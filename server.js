@@ -1,6 +1,6 @@
 // Imports
 import express from "express";
-import { loqReq, globalErr } from 
+import { loqReq, globalErr } from "./middleware/middlewares.js";
 
 // Set Ups
 dotenv.config();
@@ -9,12 +9,16 @@ const PORT = process.env.PORT || "";
 
 
 // (Request) Middleswares
-
+app.use(express.json());
+app.use(logReq);
 
 // Routes
 
 
 // Global Error Handling Middleware
-
+app.use(globalErr);
 
 // Listener
+app.listen(PORT, () => {
+    console.log(`Server listening on PORT: ${PORT}`);
+})
