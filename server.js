@@ -18,6 +18,8 @@ app.use(logReq);
 
 // Routes
 app.use("/api/applicant", applicantRoutes);
+// app.use("/api/applicant/industry", industryRoutes);
+
 
 // Global Error Handling Middleware
 app.use(globalErr);
