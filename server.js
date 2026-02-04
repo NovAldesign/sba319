@@ -2,6 +2,8 @@
 import express from "express";
 import { loqReq, globalErr } from "./middleware/middlewares.js";
 import dotenv from "dotenv";
+import connectDB from "./db/conn.js";
+import applicantRoutes from "./routes/applicantRoutes.js"
 
 // Set Ups
 dotenv.config();
@@ -14,7 +16,7 @@ app.use(express.json());
 app.use(logReq);
 
 // Routes
-
+app.use("/api/applicant", applicantRoutes);
 
 // Global Error Handling Middleware
 app.use(globalErr);
