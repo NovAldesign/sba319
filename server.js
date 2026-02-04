@@ -1,6 +1,7 @@
 // Imports
 import express from "express";
 import { loqReq, globalErr } from "./middleware/middlewares.js";
+import dotenv from "dotenv";
 
 // Set Ups
 dotenv.config();
