@@ -1,14 +1,15 @@
 // Imports
 import express from "express";
-import { loqReq, globalErr } from "./middleware/middlewares.js";
 import dotenv from "dotenv";
+import { logReq, globalErr } from "./middleware/middlewares.js";
 import connectDB from "./db/conn.js";
 import applicantRoutes from "./routes/applicantRoutes.js"
 
 // Set Ups
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || "";
+const PORT = process.env.PORT || 3001;
+connectDB();
 
 
 // (Request) Middleswares
@@ -24,4 +25,4 @@ app.use(globalErr);
 // Listener
 app.listen(PORT, () => {
     console.log(`Server listening on PORT: ${PORT}`);
-})
+});
