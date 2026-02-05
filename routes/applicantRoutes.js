@@ -1,7 +1,20 @@
 import express from "express";
-
+import Applicant from "../models/applicantSchema.js";
+import data from "../utilities/data.js";
 
 const router = express.Router();
+
+router.get("/seed", async (req, res) => {
+  try {
+    await Applicant.deleteMany({});
+    await Applicant.create(data);
+
+    res.send("Seeded Database");
+  } catch (error) {
+    console.error(error.message);
+    res.send("Seed failed");
+  }
+});
 
 // Create
 router
@@ -47,7 +60,7 @@ router
 
 
 // Gell all other applicants in that category
-router.get("/:id/category", async (req, res) => {
+router.get("/:id/industry", async (req, res) => {
     try {
         let currentApplicant = await Applicant.findById(req.params.id);
 

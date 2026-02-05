@@ -7,5 +7,10 @@ export const logReq = (req, _res, next) => {
 }
 
 export const globalErr = (err, _req, res, _next) => {
-  res.status(err.status || 500).json({ error: `❌ Error: ${err.message}` });
+
+ const statusCode = err.name === "ValidationError" ? 400 : (err.status || 500);
+  
+  res.status(statusCode).json({ 
+    error: `❌ ${err.name || 'Error'}: ${err.message}` 
+  });
 }
