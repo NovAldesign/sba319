@@ -1,21 +1,32 @@
 import express from "express";
 import Applicant from "../models/applicantSchema.js";
-import data from "../utilities/data.js";
+import Event from "../models/eventSchema.js";
+import Partnership from "../models/partnershipSchema.js";
+import { eventData, partnershipData } from "../utilities/data.js";
 
 const router = express.Router();
 
 // Seed Route to get data
-// router.get("/seed", async (req, res) => {
-//   try {
-//     await Applicant.deleteMany({});
-//     await Applicant.create(data);
+router.get("/seed-all", async (req, res, next) => {
+  try {
+  await Applicant.deleteMany({});
+        await Event.deleteMany({});
+        await Partnership.deleteMany({});
 
-//     res.send("Seeded Database");
-//   } catch (error) {
-//     console.error(error.message);
-//     res.send("Seed failed");
-//   }
-// });
+        // Insert the data
+        // Assuming 'data' is your applicant array from before
+        await Applicant.insertMany(data); 
+        await Event.insertMany(eventData);
+        await Partnership.insertMany(partnershipData);
+
+        res.status(201).json({ 
+            message: "Database fully seeded!",
+            collections: ["Applicants", "Events", "Partnerships"]
+        });
+    } catch (err) {
+        next(err);
+    }
+});
 
 // Create
 router

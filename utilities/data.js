@@ -249,3 +249,64 @@ export default [
         isFirstTimeFounder: false
     }
 ];
+
+export const eventData = [
+    {
+        title: "Founders Roundtable",
+        date: "2026-03-10",
+        location: "Atlanta, GA",
+        isVirtual: false
+    },
+    {
+        title: "VC Pitch Deck Review",
+        date: "2026-03-22",
+        location: "Virtual",
+        isVirtual: true
+    },
+    {
+        title: "Estate Planning Workshop",
+        date: "2026-04-05",
+        location: "New York, NY",
+        isVirtual: false
+    },
+    {
+        title: "Tech Ethics Symposium",
+        date: "2026-04-15",
+        location: "Virtual",
+        isVirtual: true
+    },
+    {
+        title: "Summer Networking Mixer",
+        date: "2026-06-01",
+        location: "Miami, FL",
+        isVirtual: false
+    }
+];
+
+export const partnershipData = [
+    {
+        companyName: "Stripe",
+        perk: "No fees on first $20k",
+        category: "Financial"
+    },
+    {
+        companyName: "WeWork",
+        perk: "30% off private offices",
+        category: "Lifestyle"
+    },
+    {
+        companyName: "AWS",
+        perk: "$10,000 in credits",
+        category: "Tech"
+    },
+    {
+        companyName: "RocketLawyer",
+        perk: "Free business formation",
+        category: "Legal"
+    },
+    {
+        companyName: "American Express",
+        perk: "Premium concierge access",
+        category: "Financial"
+    }
+];
