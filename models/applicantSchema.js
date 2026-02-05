@@ -17,6 +17,7 @@ const applicantSchema = new mongoose.Schema(
             type: String,
             unique: true,
             required: true,
+            index: true,
         },
 
         phone:
@@ -35,6 +36,7 @@ const applicantSchema = new mongoose.Schema(
         {
             type: String,
             required: true,
+            index: true,
 
         },
         tier:

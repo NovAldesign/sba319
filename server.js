@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(logReq);
 
 // Routes
-app.use("/api/applicant", applicantRoutes);
+app.use("/api/:id", applicantRoutes);
 // app.use("/api/applicant/industry", industryRoutes);
 
 

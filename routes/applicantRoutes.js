@@ -4,17 +4,18 @@ import data from "../utilities/data.js";
 
 const router = express.Router();
 
-router.get("/seed", async (req, res) => {
-  try {
-    await Applicant.deleteMany({});
-    await Applicant.create(data);
+// Seed Route to get data
+// router.get("/seed", async (req, res) => {
+//   try {
+//     await Applicant.deleteMany({});
+//     await Applicant.create(data);
 
-    res.send("Seeded Database");
-  } catch (error) {
-    console.error(error.message);
-    res.send("Seed failed");
-  }
-});
+//     res.send("Seeded Database");
+//   } catch (error) {
+//     console.error(error.message);
+//     res.send("Seed failed");
+//   }
+// });
 
 // Create
 router
@@ -60,18 +61,31 @@ router
 
 
 // Gell all other applicants in that category
-router.get("/:id/industry", async (req, res) => {
+router
+.get("/:id/category", async (req, res, next) => {
     try {
         let currentApplicant = await Applicant.findById(req.params.id);
 
-        if (!currentApplicant) return res.status(404).json({ error: "Applicant Not Found" });
+        if (!currentApplicant) {
+            return res.status(404).json({ error: "Applicant Not Found" });
+        }
 
-        let otherApplicant = await currentApplicant.getcategory();
+    // 2. Find everyone else in that same industry
+        // Used $ne (not equal) to exclude the current person from the list
+        const othersInIndustry = await Applicant.find({
+            industry: currentApplicant.industry,
+            _id: { $ne: currentApplicant._id } 
+        });
 
-        res.json(otherApplicant);
+        // 3. Send back the list
+        res.json({
+            industry: currentApplicant.industry,
+            count: othersInIndustry.length,
+            members: othersInIndustry
+        });
 
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        next(err); // Send to your global error handler
     }
 });
 
