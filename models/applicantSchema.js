@@ -2,8 +2,11 @@ import mongoose from "mongoose";
 
 const applicantSchema = new mongoose.Schema(
     {
-        category: "applicants",
-
+        category:
+        {
+            type: String,
+            default: "applicants",
+        },
         name:
         {
             type: String,
@@ -25,7 +28,7 @@ const applicantSchema = new mongoose.Schema(
 
         dob:
         {
-            type: String,
+            type: Date,
             required: true,
         },
         industry:
@@ -35,14 +38,30 @@ const applicantSchema = new mongoose.Schema(
 
         },
         tier:
-            { type: String },
+            { 
+                type: String,
+                enum: ["Platinum", "Gold", "Silver"],
+                default: "Silver",
+            },
 
         status:
-            { type: String },
+            { 
+                type: String,
+                enum: ["accepted", "pending"],
+                default: "pending"
+            },
 
         isFirstTimeFounder:
-            { type: Boolean },
+            { 
+                type: Boolean, 
+                default: false,    
+            },
 
+        submittedAt: 
+        { 
+            type: Date, 
+            default: Date.now 
+        }
 
     });
 
