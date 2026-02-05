@@ -1,4 +1,4 @@
-export default [
+export const applicantData = [
     {
         name: "Zara Vance",
         email: "zvance@devops.com",
