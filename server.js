@@ -17,8 +17,9 @@ app.use(express.json());
 app.use(logReq);
 
 // Routes
-app.use("/api/:id", applicantRoutes);
-// app.use("/api/applicant/industry", industryRoutes);
+app.use("/api/applicants", applicantRoutes);
+app.use("/api/events", eventRoutes);
+app.use("/api/partnerships", partnershipRoutes);
 
 
 // Global Error Handling Middleware
