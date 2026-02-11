@@ -11,6 +11,7 @@ const applicantSchema = new mongoose.Schema(
         {
             type: String,
             required: true,
+    
         },
         email:
         {

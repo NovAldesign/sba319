@@ -7,9 +7,9 @@ const partnershipSchema = new mongoose.Schema({
     },
     perk:{
         type: String,
-        requied: true
+        required: true
     },
-    catergory: {
+    category: {
         type: String,
         enum: ["Legal", "Financial", "Tech", "Lifestyle"],
         index: true
